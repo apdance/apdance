@@ -3,23 +3,15 @@ page-signin {
   .bg-body {
     position: absolute;
 
-    height: 110%;
-    width: 110%;
-    left: -10px;
-    top: -10px;
+    height: 100%;
+    width: 100%;
 
     z-index: -2;
-    background-color: rgba(44, 47, 78, 0.83);
-
-    background-image: url("../../assets/imgs/logo_default.png");
+    background-color: rgba(0, 0, 0, 0.57);
     background-size: cover;
     background-repeat: no-repeat;
 
-    -webkit-filter: blur(10px);
-    /*-moz-filter: blur(42px);
-    -o-filter: blur(42px);
-    -ms-filter: blur(42px);
-    filter: blur(42px);*/
+
 
   }
 
@@ -45,7 +37,7 @@ page-signin {
 
   }
 
-  ion-row ion-item:first-child {
+  .inline-item:first-child {
     border-right: 1px solid #ccc !important;
     margin-right: 2px;
   }
