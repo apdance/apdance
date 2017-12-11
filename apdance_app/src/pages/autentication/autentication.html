@@ -1,35 +1,45 @@
-<ion-content class="login-content" padding>
 
-    <div class="login-box">
-        <div class="icon">
-            <ion-icon name="person"></ion-icon>
-        </div>
-        <form (ngSubmit)="login()" #registerForm="ngForm">
-            <ion-row>
-                <ion-col>
-                    <ion-list inset>
+<ion-content>
+    <div></div>
+    <div class="bg-body"></div><div class="bg-body-up"></div>
+    <ion-grid padding>
+        <ion-row>
+            <ion-col col-12 class="row-logo">
+                <img src="assets/imgs/logo_default.png" alt="">
+            </ion-col>
+        </ion-row>
+        <ion-row col-12>
+            <strong></strong>
+        </ion-row>
+        <!--Linhas do formulário-->
+        <ion-row col-12>
+            <ion-item>
+                <ion-label>
+                    <ion-icon name="mail"></ion-icon>
+                </ion-label>
+                <ion-input type="email" placeholder="Informe seu e-mail"></ion-input>
+            </ion-item>
+        </ion-row>
+        <ion-row col-12>
+            <ion-item>
+                <ion-label>
+                    <ion-icon name="key"></ion-icon>
+                </ion-label>
+                <ion-input type="password" placeholder="Senha"></ion-input>
+            </ion-item>
+        </ion-row>
+        <ion-row col-12>
+            <div col-6>
+                <a style="color: white" href="#">Esqueci minha senha.</a>
+            </div>
+            <div col-6 end>
+                <button  ion-button outline class="btn-next">Entrar</button>
+            </div>
+        </ion-row>
+    </ion-grid>
 
-                        <ion-item>
-                            <ion-input type="text" placeholder="Usuário ou e-mail"></ion-input>
-                        </ion-item>
+    <footer-bar class="footer"></footer-bar>
 
-                        <ion-item>
-                            <ion-input type="password" placeholder="Senha" required></ion-input>
-                        </ion-item>
-
-                    </ion-list>
-                </ion-col>
-            </ion-row>
-
-            <ion-row>
-                <ion-col class="signup-col">
-                    <button ion-button class="submit-btn" full type="submit" [disabled]="!registerForm.form.valid">
-                        Entrar
-                    </button>
-                    <button ion-button class="register-btn" block clear (click)="createAccount()">Cadastre-se agora!</button>
-                </ion-col>
-            </ion-row>
-
-        </form>
-    </div>
 </ion-content>
+
+

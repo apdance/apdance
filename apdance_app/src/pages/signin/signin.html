@@ -5,7 +5,7 @@
     <ion-grid padding>
         <ion-row>
             <ion-col col-12 class="row-logo">
-                <img src="/assets/imgs/logo_default.png" alt="">
+                <img src="assets/imgs/logo_default.png" alt="">
             </ion-col>
         </ion-row>
         <ion-row col-12>
@@ -48,21 +48,23 @@
                     <ion-icon name="person"></ion-icon>
                 </ion-label>
                 <ion-select placeholder="Perfil de acesso">
-                    <option value="1">Administrador</option>
-                    <option value="2">Profissional de dança</option>
-                    <option value="3">Cliente</option>
+                    <ion-option value="1">Administrador</ion-option>
+                    <ion-option value="2">Profissional de dança</ion-option>
+                    <ion-option value="3">Cliente</ion-option>
                 </ion-select>
             </ion-item>
         </ion-row>
         <ion-row col-12>
             <div col-6>
-                <a style="color: white" href="#">Já tenho cadastro!</a>
+                <a style="color: white" [navPush]="AuthPage">Já tenho cadastro!</a>
             </div>
             <div col-6 end>
                 <button  ion-button outline class="btn-next">Próximo</button>
             </div>
-
         </ion-row>
     </ion-grid>
+
     <footer-bar class="footer"></footer-bar>
 </ion-content>
+
+

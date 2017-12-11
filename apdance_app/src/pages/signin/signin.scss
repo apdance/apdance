@@ -1,42 +1,4 @@
 page-signin {
-
-  .bg-body {
-    position: absolute;
-
-    height: 100%;
-    width: 100%;
-
-    z-index: -2;
-    background-color: rgba(0, 0, 0, 0.57);
-    background-size: cover;
-    background-repeat: no-repeat;
-
-
-
-  }
-
-  .bg-body-up{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-
-    background: rgba(0, 0, 0, 0.58);
-  }
-  .row-logo {
-    padding: 4px;
-    text-align: center;
-  }
-  .row-logo img {
-    margin-top: 30px;
-    height: auto;
-    max-width: 150px;
-    max-height: 150px;
-    border-radius: 50%;
-    /*background: rgba(0, 0, 0, 0.17);*/
-
-  }
-
   .inline-item:first-child {
     border-right: 1px solid #ccc !important;
     margin-right: 2px;
@@ -48,13 +10,9 @@ page-signin {
     border-color: white;
   }
 
-  .footer {
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-  }
 
-  ion-row strong{
+
+  ion-row strong {
     color: rgba(238, 238, 238, 0.83);
   }
 
