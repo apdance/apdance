@@ -13,13 +13,48 @@
         </ion-row>
         <!--Linhas do formulário-->
         <ion-row col-12>
+            <ion-item col class="inline-item">
+                <ion-label>
+                    <ion-icon name="settings"></ion-icon>
+                </ion-label>
+                <ion-select #profile placeholder="Qual o seu perfil?">
+                    <ion-option *ngFor="let access_item of access_type" [value]="access_item.id">{{access_item.access_type_name}}</ion-option>
+                </ion-select>
+            </ion-item>
+        </ion-row>
+        <ion-row col-12>
+            <ion-item col class="inline-item">
+                <ion-label>
+                    <ion-icon name="person"></ion-icon>
+                </ion-label>
+                <ion-input type="text" placeholder="Nome completo"></ion-input>
+            </ion-item>
+        </ion-row>
+        <ion-row col-12>
             <ion-item>
                 <ion-label>
                     <ion-icon name="mail"></ion-icon>
                 </ion-label>
-                <ion-input type="email" placeholder="Informe seu e-mail"></ion-input>
+                <ion-input type="email" placeholder="E-mail"></ion-input>
             </ion-item>
         </ion-row>
+        <ion-row col-12>
+            <ion-item col class="inline-item">
+                <ion-label>
+                    <ion-icon name="calendar"></ion-icon>
+                </ion-label>
+                <ion-input type="text" placeholder="Data de nascimento"></ion-input>
+            </ion-item>
+        </ion-row>
+        <ion-row col-12>
+            <ion-item>
+                <ion-label>
+                    <ion-icon name="phone-portrait"></ion-icon>
+                </ion-label>
+                <ion-input placeholder="(99) 9999-9999"></ion-input>
+            </ion-item>
+        </ion-row>
+
         <ion-row col-12>
             <ion-item col class="inline-item">
                 <ion-label>
@@ -34,26 +69,7 @@
                 <ion-input type="password" placeholder="Repita a senha"></ion-input>
             </ion-item>
         </ion-row>
-        <ion-row col-12>
-            <ion-item>
-                <ion-label>
-                    <ion-icon name="phone-portrait"></ion-icon>
-                </ion-label>
-                <ion-input placeholder="(99) 9999-9999"></ion-input>
-            </ion-item>
-        </ion-row>
-        <ion-row col-12>
-            <ion-item>
-                <ion-label>
-                    <ion-icon name="person"></ion-icon>
-                </ion-label>
-                <ion-select placeholder="Perfil de acesso">
-                    <ion-option value="1">Administrador</ion-option>
-                    <ion-option value="2">Profissional de dança</ion-option>
-                    <ion-option value="3">Cliente</ion-option>
-                </ion-select>
-            </ion-item>
-        </ion-row>
+
         <ion-row col-12>
             <div col-6>
                 <a style="color: white" [navPush]="AuthPage">Já tenho cadastro!</a>

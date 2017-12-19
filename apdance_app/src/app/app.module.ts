@@ -6,11 +6,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import {AutenticationPageModule} from "../pages/autentication/autentication.module";
 import {AutenticationPage} from "../pages/autentication/autentication";
 import {SigninPage} from "../pages/signin/signin";
-import {FooterBarComponent} from "../components/footer-bar/footer-bar";
 import {ComponentsModule} from "../components/components.module";
+import { ApiconnectProvider } from '../providers/apiconnect/apiconnect';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import {ComponentsModule} from "../components/components.module";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-      ComponentsModule
+      ComponentsModule,
+      HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -34,7 +35,8 @@ import {ComponentsModule} from "../components/components.module";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiconnectProvider,
   ]
 })
 export class AppModule {}
