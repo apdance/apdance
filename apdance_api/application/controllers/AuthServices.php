@@ -6,66 +6,83 @@
  * Time: 17:37
  */
 
-class AuthServices extends CI_Controller
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+require APPPATH . '/libraries/REST_Controller.php';
+
+class AuthServices extends REST_Controller
 {
-    public function __construct($config = 'rest')
+    public function __construct()
     {
-        parent::__construct($config);
-        $this->output->set_content_type('application/json');
-        $this->output->set_header('Access-Control-Allow-Origin: *');
+        parent::__construct();
     }
 
-    private $user;
-    private $user_name;
-    private $user_passwd;
-    private $token_active;
-
-    public function Auth(){
-        $this->token_active = $this->input->header('token');
-
-        /** TODO checar usuário para fazer login **/
-    }
-
-    public function checkSession(){
+    public function checkSession_get(){
         //check session active$
-        $valid = false;
+        $valid = true;
 
         if($valid){
-            $this->output->set_header('HTTP/1.0 200 OK');
+            $code = $this::HTTP_OK;
         }else{
-            $this->output->set_header('HTTP/1.0 403 Forbidden');
+            $code = $this::HTTP_FORBIDDEN;
         }
 
 
-        echo json_encode(array(
+        $this->response(array(
             'success'=>$valid,
             'metadata'=>array(
                 'resource'=>'session'
             ),
             'data'=>array(),
             'mag'=>($valid) ? "Sessão ativa" : "Sessão inativa"
-        ));
+        ), $code);
     }
 
     /**
      * Verifica se a sessão está ativa através do token de sessão
      * Se estiver retorna true, se não false.
      * http header => token
+     *
+     * As funções nessa classe devem conter no final _ mais o verbo http exemplo Login_post em que post é o verbo.
+     * Ou seja, o tipo de metodo.
     */
-    public function Login(){
-        $this->output->set_content_type('application/json');
+    public function Login_post(){
 
-        $this->db->from("user_teste");
-        $res = $this->db->get()->result_array();
+        $post = $this->post();
 
-        echo json_encode(array(
-            'success'=>true,
+        $return = array(
+            'success'=>false,
             'metadata'=>array(
-                'totalCount'=>count($res),
-                'resource'=>'user_teste'
+                'resource'=>'Login'
             ),
-            'data'=>$res,
-            'mag'=>'Success return'
-        ));
+        );
+
+        $this->db->from("users");
+
+        if(empty($post['email']) OR empty($post['passwd'])){
+
+            $return['msg'] = "Email e senha são necessário.";
+            $this->response($return, $this::HTTP_BAD_REQUEST);
+        }
+
+        //ok::email e senha informados
+        $this->db->where("user_email", $post['email']);
+        $this->db->where("user_passwd", md5($post['passwd']));
+
+        //buscar
+        $res = $this->db->get()->row_object();
+        //build hash
+
+        if(empty($res)){
+            $return['msg'] = "Email ou senha incorreta.";
+            $this->response($return, $this::HTTP_UNAUTHORIZED);
+        }
+
+        $return['success'] = true;
+        $return['user'] = $res;
+        $return['profile'] = array();
+        $return['token'] = md5($post['email'].$post['passwd'].(date('his')));
+        $return['msg'] = "Usuário logado com sucesso";
+        $this->response($return);
     }
 }

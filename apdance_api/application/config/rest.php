@@ -228,7 +228,7 @@ $config['rest_valid_logins'] = ['admin' => '1234'];
 */
 $config['rest_ip_whitelist_enabled'] = FALSE;
 
-/*
+/**
 |--------------------------------------------------------------------------
 | REST IP Whitelist
 |--------------------------------------------------------------------------
@@ -240,7 +240,7 @@ $config['rest_ip_whitelist_enabled'] = FALSE;
 |
 | 127.0.0.1 and 0.0.0.0 are allowed by default
 |
-*/
+**/
 $config['rest_ip_whitelist'] = '';
 
 /*
@@ -287,7 +287,7 @@ $config['rest_database_group'] = 'default';
 | The table name in your database that stores API keys
 |
 */
-$config['rest_keys_table'] = 'key';
+$config['rest_keys_table'] = 'keys';
 
 /*
 |--------------------------------------------------------------------------
@@ -312,7 +312,7 @@ $config['rest_keys_table'] = 'key';
 |   ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 |
 */
-$config['rest_enable_keys'] = FALSE;
+$config['rest_enable_keys'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -323,7 +323,7 @@ $config['rest_enable_keys'] = FALSE;
 | column name to match e.g. my_key
 |
 */
-$config['rest_key_column'] = 'key_id';
+$config['rest_key_column'] = 'key';
 
 /*
 |--------------------------------------------------------------------------

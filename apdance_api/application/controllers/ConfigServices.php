@@ -5,31 +5,32 @@
  * Date: 13/12/2017
  * Time: 17:37
  */
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class ConfigServices extends CI_Controller
+require APPPATH . '/libraries/REST_Controller.php';
+
+class ConfigServices extends REST_Controller
 {
     public function __construct()
     {
         parent::__construct();
 
-        $this->output->set_content_type('application/json');
+        //$this->output->set_content_type('application/json');
         $this->output->set_header('Access-Control-Allow-Origin: *');
     }
-
-
 
 
     /**
      *
     */
-    public function app_access_type(){
-        $this->output->set_header('HTTP/1.0 200 OK');
+    public function app_config_cadastro_get(){
 
         $this->db->from("access_type");
+        $this->db->where("access_type_active", 1);
+
         $res = $this->db->get()->result_array();
 
-
-        echo json_encode(array(
+        $this->response(array(
             'success'=>true,
             'metadata'=>array(
                 'totalCount'=>count($res),
