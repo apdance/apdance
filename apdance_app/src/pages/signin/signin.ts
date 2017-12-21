@@ -25,33 +25,8 @@ export class SigninPage {
     AuthPage: any = AutenticationPage;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private api: ApiconnectProvider) {
-        this.api.api_check_session().subscribe(session => {
-            if(session.success === true){
-                this.initForSessionIsActive()
-            }else{
-                this.initForSessionIsInactive()
-            }
-
-        }, error=>{
-            this.initForSessionIsInactive()
-        })
     }
 
-    initForSessionIsActive() {
-        this.navCtrl.push(AutenticationPage)
-    }
-
-    initForSessionIsInactive() {
-
-
-        //Configurar a tela de cadastro
-        this.api.api_request_access_type().subscribe(data => {
-            console.log("data.data", data.data);
-            this.access_type = data.data;
-        }, error => {
-            console.log("Error", error)
-        })
-    }
 
 
 }
