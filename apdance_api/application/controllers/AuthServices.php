@@ -9,7 +9,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 require APPPATH . '/libraries/REST_Controller.php';
-
+/**
+ * @property CI_DB_query_builder db
+*/
 class AuthServices extends REST_Controller
 {
     public function __construct()
@@ -24,7 +26,7 @@ class AuthServices extends REST_Controller
         if($valid){
             $code = $this::HTTP_OK;
         }else{
-            $code = $this::HTTP_FORBIDDEN;
+            $code = $this::HTTP_UNAUTHORIZED;
         }
 
 
@@ -61,12 +63,16 @@ class AuthServices extends REST_Controller
 
         if(empty($post['email']) OR empty($post['passwd'])){
 
-            $return['msg'] = "Email e senha são necessário.";
+            $return['msg'] = "Email e senha são necessários.";
             $this->response($return, $this::HTTP_BAD_REQUEST);
         }
 
         //ok::email e senha informados
+        $this->db->or_group_start();
         $this->db->where("user_email", $post['email']);
+        $this->db->or_where("user_login", $post['email']);
+        $this->db->group_end();
+
         $this->db->where("user_passwd", md5($post['passwd']));
 
         //buscar
