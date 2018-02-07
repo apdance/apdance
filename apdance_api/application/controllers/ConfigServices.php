@@ -40,4 +40,8 @@ class ConfigServices extends REST_Controller
             'mag'=>'Success return'
         ));
     }
+
+    public function vincular_organizacao_post(){
+        
+    }
 }

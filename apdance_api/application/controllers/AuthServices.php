@@ -21,9 +21,11 @@ class AuthServices extends REST_Controller
 
     public function checkSession_get(){
         //check session active$
-        $valid = true;
+        $this->db->where("session_token", $this->post('token'));
 
-        if($valid){
+        $session = $this->db->get("session")->row_object();
+
+        if(!empty($session)){
             $code = $this::HTTP_OK;
         }else{
             $code = $this::HTTP_UNAUTHORIZED;
@@ -31,12 +33,12 @@ class AuthServices extends REST_Controller
 
 
         $this->response(array(
-            'success'=>$valid,
+            'success'=>!empty($session),
             'metadata'=>array(
                 'resource'=>'session'
             ),
             'data'=>array(),
-            'mag'=>($valid) ? "Sessão ativa" : "Sessão inativa"
+            'mag'=>!empty($session) ? "Sessão ativa" : "Sessão inativa"
         ), $code);
     }
 
@@ -84,11 +86,19 @@ class AuthServices extends REST_Controller
             $this->response($return, $this::HTTP_UNAUTHORIZED);
         }
 
+
+
         $return['success'] = true;
         $return['user'] = $res;
         $return['profile'] = array();
         $return['token'] = md5($post['email'].$post['passwd'].(date('his')));
         $return['msg'] = "Usuário logado com sucesso";
+
+        $this->db->insert("session", array(
+            'session_token'=>$return['token'],
+            'session_user_id'=>$res->id
+        ));
+
         $this->response($return);
     }
 }
