@@ -29,8 +29,6 @@ export class ApiconnectProvider {
     }
 
     api_request_login(user: any): Observable<any> {
-
-
         return this.http.post(`${apiUrl}/AuthServices/Login`, user)
     }
 
@@ -44,4 +42,7 @@ export class ApiconnectProvider {
         return !isEmpty(this.api_local_getSessionToken());
     }
 
+    api_request_cadastro(data: any): Observable<any> {
+        return this.http.post(`${apiUrl}/SignIn`, data)
+    }
 }

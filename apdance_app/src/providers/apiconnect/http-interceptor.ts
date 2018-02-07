@@ -56,6 +56,7 @@ export class DoHttpInterceptor implements HttpInterceptor{
                     switch(error.status){
                         case 401:
                             if(confirm("É necessário fazer login para ter acesso às informações do sistema.")){
+                                console.log("error 401", error)
                                 this.clearSession()
                             }
 
@@ -63,7 +64,7 @@ export class DoHttpInterceptor implements HttpInterceptor{
                         case 403:
                             this.clearSession();
                             console.log("403", error)
-                            let alert = this.alert.create({title: "Erro de autenticação", message: !isEmpty(error.error.msg) ? error.error.msg : 'Desculpe, você não tem permissão para acessar esta página. Faça login e tente novamente.'})
+                            //let alert = this.alert.create({title: "Erro de autenticação", message: !isEmpty(error.error.msg) ? error.error.msg : 'Desculpe, você não tem permissão para acessar esta página. Faça login e tente novamente.'})
                             //alert.setBackButtonText("Fazer Login")
                             //alert.present()
                             break;

@@ -3,10 +3,8 @@
  */
 import {Injectable} from '@angular/core';
 import {isObject} from "rxjs/util/isObject";
-import {variable} from "@angular/compiler/src/output/output_ast";
 
 export function isEmpty(variable:any | null | undefined): Boolean{
-    console.log('variable', variable)
     if(isObject(variable)){
         return (Object.keys(variable).length == 0)
     }else if(Array.isArray(variable)){
@@ -14,8 +12,6 @@ export function isEmpty(variable:any | null | undefined): Boolean{
     }
     return (variable === undefined || variable == null || variable == false || variable == '')
 }
-
-
 
 @Injectable()
 export class UtilComponent {
@@ -55,21 +51,5 @@ export class UtilComponent {
         return (a);
     }
 
-    getHistory(){
-        try{
-            return JSON.parse(localStorage.get('history_propostas'));
-        }catch (e){
-            return {};
-        }
-    }
-
-    setHistory(historyItem:any){
-        if(isEmpty(localStorage.get('history_propostas'))){
-            localStorage.set('history_propostas', JSON.stringify({historyItem}))
-        }
-
-
-
-    }
 
 }

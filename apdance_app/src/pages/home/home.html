@@ -1,22 +1,43 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      APDANCE
+        <div class="title-app">
+            <div >
+                <img class="img-logo" width="32" src="assets/imgs/logo_default.png">
+            </div>
+            <div style="display: inline-block">
+                <strong>Home</strong>
+            </div>
+        </div>
     </ion-title>
+    <ion-buttons end>
+        <button (click)="sair()" ion-button color="danger" icon-only >
+            Sair
+        </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  APP DANCE - APP BLANK
-  <ul>
-      <li>
-        Criar mockups pra definirmos a interface do sistema;
-      </li>
-    <li>
-      Alocar programadores;
-    </li>
-    <li>
-      Procurar apps similares para ter como base.
-    </li>
-  </ul>
+  <ion-card>
+      <ion-card-header>
+          <p>APDANCE TESTE CARD</p>
+      </ion-card-header>
+      <ion-card-content>
+          <ul>
+              <li>
+                  Criar o layout para esta e outras telas
+              </li>
+          </ul>
+          {{user|json}}
+
+          <button (click)="teste()" ion-button>
+              CheckSession
+          </button>
+
+          <br>
+          {{test|json}}
+      </ion-card-content>
+  </ion-card>
+
 </ion-content>

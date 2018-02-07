@@ -36,7 +36,7 @@ export class AutenticationPage {
                     let tokenInsert = this.api.api_local_setSessionToken(data.token)
                     console.log("token", tokenInsert);
                     if(tokenInsert){
-                        this.navCtrl.setRoot(HomePage);
+                        this.navCtrl.setRoot(HomePage, {user:data.user});
                     }
                 }
                 return;

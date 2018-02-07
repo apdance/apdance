@@ -1,85 +1,98 @@
-
 <ion-content>
     <div></div>
-    <div class="bg-body"></div><div class="bg-body-up"></div>
-    <ion-grid padding>
-        <ion-row>
-            <ion-col col-12 class="row-logo">
-                <img src="assets/imgs/logo_default.png" alt="">
-            </ion-col>
-        </ion-row>
-        <ion-row col-12>
-            <strong>É novo no ApDance?</strong>
-        </ion-row>
-        <!--Linhas do formulário-->
-        <ion-row col-12>
-            <ion-item col class="inline-item">
-                <ion-label>
-                    <ion-icon name="settings"></ion-icon>
-                </ion-label>
-                <ion-select #profile placeholder="Qual o seu perfil?">
-                    <ion-option *ngFor="let access_item of access_type" [value]="access_item.id">{{access_item.access_type_name}}</ion-option>
-                </ion-select>
-            </ion-item>
-        </ion-row>
-        <ion-row col-12>
-            <ion-item col class="inline-item">
-                <ion-label>
-                    <ion-icon name="person"></ion-icon>
-                </ion-label>
-                <ion-input type="text" placeholder="Nome completo"></ion-input>
-            </ion-item>
-        </ion-row>
-        <ion-row col-12>
-            <ion-item>
-                <ion-label>
-                    <ion-icon name="mail"></ion-icon>
-                </ion-label>
-                <ion-input type="email" placeholder="E-mail"></ion-input>
-            </ion-item>
-        </ion-row>
-        <ion-row col-12>
-            <ion-item col class="inline-item">
-                <ion-label>
-                    <ion-icon name="calendar"></ion-icon>
-                </ion-label>
-                <ion-input type="text" placeholder="Data de nascimento"></ion-input>
-            </ion-item>
-        </ion-row>
-        <ion-row col-12>
-            <ion-item>
-                <ion-label>
-                    <ion-icon name="phone-portrait"></ion-icon>
-                </ion-label>
-                <ion-input placeholder="(99) 9999-9999"></ion-input>
-            </ion-item>
-        </ion-row>
+    <div class="bg-body"></div>
+    <div class="bg-body-up"></div>
+    <form #form="ngForm">
+        <ion-grid padding>
+            <ion-row>
+                <ion-col col-12 class="row-logo">
+                    <img src="assets/imgs/logo_default.png" alt="">
+                </ion-col>
+            </ion-row>
+            <ion-row col-12>
+                <strong>É novo no ApDance?</strong>
+            </ion-row>
 
-        <ion-row col-12>
-            <ion-item col class="inline-item">
-                <ion-label>
-                    <ion-icon name="key"></ion-icon>
-                </ion-label>
-                <ion-input type="password" placeholder="Senha"></ion-input>
-            </ion-item>
-            <ion-item col class="inline-item">
-                <ion-label>
-                    <ion-icon name="key"></ion-icon>
-                </ion-label>
-                <ion-input type="password" placeholder="Repita a senha"></ion-input>
-            </ion-item>
-        </ion-row>
+            <!--Linhas do formulário-->
+            <ion-row col-12>
+                <ion-item class="inline-item">
+                    <ion-label>
+                        <ion-icon name="settings"></ion-icon>
+                    </ion-label>
+                    <ion-select [(ngModel)]="request.user_access_type" name="user_access_type" #profile placeholder="Qual o seu perfil?" required>
+                        <ion-option *ngFor="let access_item of access_type" [value]="access_item.id">
+                            {{access_item.access_type_name}}
+                        </ion-option>
+                    </ion-select>
+                </ion-item>
+            </ion-row>
+            <ion-row col-12>
+                <ion-item col class="inline-item">
+                    <ion-label>
+                        <ion-icon name="person"></ion-icon>
+                    </ion-label>
+                    <ion-input [(ngModel)]="request.user_name" name="user_name" type="text" placeholder="Nome completo" required></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row col-12>
+                <ion-item>
+                    <ion-label>
+                        <ion-icon name="mail"></ion-icon>
+                    </ion-label>
+                    <ion-input [(ngModel)]="request.user_email" name="user_email" type="email" placeholder="E-mail" required></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row col-12>
+                <ion-item col class="inline-item">
+                    <ion-label>
+                        <ion-icon name="calendar"></ion-icon>
+                    </ion-label>
+                    <ion-input [(ngModel)]="request.user_date_birth" name="user_birth" type="text" placeholder="Data de nascimento" required></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row col-12>
+                <ion-item>
+                    <ion-label>
+                        <ion-icon name="phone-portrait"></ion-icon>
+                    </ion-label>
+                    <ion-input [(ngModel)]="request.user_phone_number" name="user_phone_number" placeholder="(99) 9999-9999" required></ion-input>
+                </ion-item>
+            </ion-row>
 
-        <ion-row col-12>
-            <div col-6>
-                <a style="color: white" [navPush]="AuthPage">Já tenho cadastro!</a>
-            </div>
-            <div col-6 end>
-                <button  ion-button outline class="btn-next">Próximo</button>
-            </div>
-        </ion-row>
-    </ion-grid>
+            <ion-row col-12>
+                <ion-item>
+                    <ion-label>
+                        <ion-icon name="contact"></ion-icon>
+                    </ion-label>
+                    <ion-input [(ngModel)]="request.user_login" name="user_login" placeholder="Login" required></ion-input>
+                </ion-item>
+            </ion-row>
 
+            <ion-row col-12>
+                <ion-item col class="inline-item">
+                    <ion-label>
+                        <ion-icon name="key"></ion-icon>
+                    </ion-label>
+                    <ion-input [(ngModel)]="request.user_passwd" name="user_passwd" type="password" placeholder="Senha" required></ion-input>
+                </ion-item>
+                <ion-item col class="inline-item">
+                    <ion-label>
+                        <ion-icon name="key"></ion-icon>
+                    </ion-label>
+                    <ion-input [(ngModel)]="request.user_passwd2" name="user_passwd2" type="password" placeholder="Repita a senha"></ion-input>
+                </ion-item>
+            </ion-row>
+
+            <ion-row col-12>
+                <div col-6>
+                    <a style="color: white" [navPush]="AuthPage">Já tenho cadastro!</a>
+                </div>
+                <div col-6 end>
+                    <button (click)="cadastro()" [disabled]="!form.valid" ion-button outline class="btn-next">Próximo</button>
+                </div>
+            </ion-row>
+        </ion-grid>
+    </form>
     <footer-bar class="footer"></footer-bar>
 </ion-content>
 
