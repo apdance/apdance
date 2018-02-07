@@ -34,6 +34,12 @@ export class DoHttpInterceptor implements HttpInterceptor{
             'Content-Type': 'application/json'
         };
 
+
+        if(!isEmpty(localStorage.getItem("token"))){
+            headers.token = localStorage.getItem("token");
+            console.log("headers", headers);
+        }
+
         /*if(!isEmpty(this.getTokenAuth())){
             //vem do localStorage
             headers.Authorization = this.getTokenAuth();

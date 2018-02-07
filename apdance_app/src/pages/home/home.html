@@ -1,49 +1,75 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-        <div class="title-app">
-            <div >
-                <img class="img-logo" width="32" src="assets/imgs/logo_default.png">
+    <ion-navbar>
+        <ion-title>
+            <div class="title-app">
+                <div>
+                    <img class="img-logo" width="32" src="assets/imgs/logo_default.png">
+                </div>
+                <div style="display: inline-block">
+                    <strong>Home</strong>
+                </div>
             </div>
-            <div style="display: inline-block">
-                <strong>Home</strong>
-            </div>
-        </div>
-    </ion-title>
-    <ion-buttons end>
-        <button (click)="sair()" ion-button color="danger" icon-only >
-            Sair
-        </button>
-    </ion-buttons>
-  </ion-navbar>
+        </ion-title>
+        <ion-buttons end>
+            <button (click)="sair()" ion-button color="danger" icon-only>
+                Sair
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
-      <ion-card-header>
-          <p>COMPLETE SEU CADASTRO</p>
-      </ion-card-header>
-      <ion-card-content>
-          <p>Parabéns! Estamos quase lá! Agora precisamos de mais algumas informações para prosseguirmos.</p>
-          <ion-row>
-              <ion-select [(ngModel)]="request.organizacao" name="organizacao" #profile placeholder="Selecione a organização">
-                  <ion-option value="1">
-                      TESTE ORG 1
-                  </ion-option>
-                  <ion-option value="2">
-                      TESTE ORG 2
-                  </ion-option>
-                  <ion-option value="3">
-                      TESTE ORG 3
-                  </ion-option>
-              </ion-select>
-          </ion-row>
-          <ion-row>
-              <button ion-button (click)="vincular()">
-                  Prosseguir
-              </button>
-          </ion-row>
-      </ion-card-content>
-  </ion-card>
+    <ion-card>
+        <ion-card-header>
+            <p *ngIf="!cadastro_ok">COMPLETE SEU CADASTRO</p>
+            <p *ngIf="cadastro_ok" style="color:green">CADASTRO COMPLETO</p>
+        </ion-card-header>
+        <ion-card-content>
+            <div *ngIf="!cadastro_ok">
+                <p>Parabéns! Estamos quase lá! Agora precisamos de mais algumas informações para prosseguirmos.</p>
+                <ion-row>
+                    <ion-select [(ngModel)]="request.organizacao" name="organizacao" #profile
+                                placeholder="Selecione a organização">
+                        <ion-option value="1">
+                            TESTE ORG 1
+                        </ion-option>
+                        <ion-option value="2">
+                            TESTE ORG 2
+                        </ion-option>
+                        <ion-option value="3">
+                            TESTE ORG 3
+                        </ion-option>
+                    </ion-select>
+                </ion-row>
+                <ion-row>
+                    <button ion-button (click)="vincular()">
+                        Prosseguir
+                    </button>
+                </ion-row>
+            </div>
+            <div *ngIf="cadastro_ok">
+                <h3>Aguardando confirmação da instituição</h3>
+                <p>Agora é só aguardar a avaliação da instituição! Nós avisaremos quando tudo estiver concluído!</p>
+
+            </div>
+
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card *ngIf="cadastro_ok">
+        <ion-card-header>
+            <p>
+                MEUS DADOS CADASTRAIS
+            </p>
+        </ion-card-header>
+        <ion-card-content>
+            <p>
+                NOME: XXXXXXX
+            </p>
+            <p>
+                DADOS DO USUÁRIO
+            </p>
+        </ion-card-content>
+    </ion-card>
 
 </ion-content>

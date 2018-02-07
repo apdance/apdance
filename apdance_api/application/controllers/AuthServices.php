@@ -21,7 +21,7 @@ class AuthServices extends REST_Controller
 
     public function checkSession_get(){
         //check session active$
-        $this->db->where("session_token", $this->post('token'));
+        $this->db->where("session_token", $this->head('token'));
 
         $session = $this->db->get("session")->row_object();
 
@@ -31,6 +31,9 @@ class AuthServices extends REST_Controller
             $code = $this::HTTP_UNAUTHORIZED;
         }
 
+        $this->db->where("user_id", $session->session_user_id);
+        $resOrg = $this->db->get("user_org")->row_object();
+
 
         $this->response(array(
             'success'=>!empty($session),
@@ -38,6 +41,7 @@ class AuthServices extends REST_Controller
                 'resource'=>'session'
             ),
             'data'=>array(),
+            'vinculo'=>!empty($resOrg),
             'mag'=>!empty($session) ? "Sessão ativa" : "Sessão inativa"
         ), $code);
     }
@@ -69,6 +73,12 @@ class AuthServices extends REST_Controller
             $this->response($return, $this::HTTP_BAD_REQUEST);
         }
 
+
+        $this->db->join("user_org", "user_org.user_id = users.id", 'left');
+        $this->db->join("organizacao", "organizacao.org_id = user_org.org_id", 'left');
+
+
+
         //ok::email e senha informados
         $this->db->or_group_start();
         $this->db->where("user_email", $post['email']);
@@ -79,6 +89,8 @@ class AuthServices extends REST_Controller
 
         //buscar
         $res = $this->db->get()->row_object();
+
+
         //build hash
 
         if(empty($res)){
@@ -98,6 +110,8 @@ class AuthServices extends REST_Controller
             'session_token'=>$return['token'],
             'session_user_id'=>$res->id
         ));
+
+
 
         $this->response($return);
     }

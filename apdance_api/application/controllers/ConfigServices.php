@@ -42,6 +42,20 @@ class ConfigServices extends REST_Controller
     }
 
     public function vincular_organizacao_post(){
-        
+        //check session active$
+        $this->db->where("session_token", $this->head('token'));
+
+        $session = $this->db->get("session")->row_object();
+
+        $ok= $this->db->insert("user_org", array(
+            'user_id'=>$session->session_user_id,
+            'org_id'=>$this->post("organizacao")
+        ));
+
+
+        $this->response(array(
+            'success'=>!empty($ok),
+            'msg'=>!empty($ok) ? "Vinculo realizado com sucesso" : "Não foi possível realizar o vinculo com esta instituição"
+        ));
     }
 }

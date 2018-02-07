@@ -45,13 +45,29 @@ export class SigninPage {
 
     cadastro(){
         let alert = this.alert.create({title:"Cadastro"})
+
+
         this.api.api_request_cadastro(this.request).subscribe(data=>{
 
             alert.setMessage(data.msg)
             alert.present()
 
+            if(data.success){
+                alert.addButton({
+                    text:"Logar",
+                    role:'cancel',
+                    handler: () => {
+                        this.navCtrl.setRoot(AutenticationPage)
+                    }
+                })
+            }
+
+
+
             alert.onDidDismiss(d=>{
                 this.request = {}
+
+
             })
 
         }, error=>{
