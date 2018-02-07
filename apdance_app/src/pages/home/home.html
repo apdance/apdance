@@ -21,22 +21,28 @@
 <ion-content padding>
   <ion-card>
       <ion-card-header>
-          <p>APDANCE TESTE CARD</p>
+          <p>COMPLETE SEU CADASTRO</p>
       </ion-card-header>
       <ion-card-content>
-          <ul>
-              <li>
-                  Criar o layout para esta e outras telas
-              </li>
-          </ul>
-          {{user|json}}
-
-          <button (click)="teste()" ion-button>
-              CheckSession
-          </button>
-
-          <br>
-          {{test|json}}
+          <p>Parabéns! Estamos quase lá! Agora precisamos de mais algumas informações para prosseguirmos.</p>
+          <ion-row>
+              <ion-select [(ngModel)]="request.organizacao" name="organizacao" #profile placeholder="Selecione a organização">
+                  <ion-option value="1">
+                      TESTE ORG 1
+                  </ion-option>
+                  <ion-option value="2">
+                      TESTE ORG 2
+                  </ion-option>
+                  <ion-option value="3">
+                      TESTE ORG 3
+                  </ion-option>
+              </ion-select>
+          </ion-row>
+          <ion-row>
+              <button ion-button (click)="vincular()">
+                  Prosseguir
+              </button>
+          </ion-row>
       </ion-card-content>
   </ion-card>
 

@@ -30,6 +30,8 @@ plugins/ios.json
 www/
 $RECYCLE.BIN/
 
+apdance_api/application/config/database.php
+
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate

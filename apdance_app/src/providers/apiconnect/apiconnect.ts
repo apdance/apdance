@@ -45,4 +45,8 @@ export class ApiconnectProvider {
     api_request_cadastro(data: any): Observable<any> {
         return this.http.post(`${apiUrl}/SignIn`, data)
     }
+
+    api_request_vincular_organizacao(data: any): Observable<any> {
+        return this.http.post(`${apiUrl}/ConfigServices/vincular_organizacao`, data)
+    }
 }
